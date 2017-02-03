@@ -8,12 +8,9 @@ enabled = 1 \n\
 gpgcheck = 1 \n\
 gpgkey = https://repos.influxdata.com/influxdb.key \n'\
 > /etc/yum.repos.d/influxdb.repo \
-    && curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - \
     && yum clean all \
     && yum -y update \
     && yum install -y initscripts \
-    && yum install -y nodejs \
-    && yum install -y gcc-c++ make \
     && yum install -y influxdb \
     && yum install -y httpd mod-ssl \
     && yum install -y epel-release \
@@ -29,7 +26,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && /usr/local/share/php-composer/composer.phar require influxdb/influxdb-php
-
 
 WORKDIR /
 
